@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #ffd6e8, #ffeaf5);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  .lock-screen, .gift-screen { display: none; }
+  .lock-screen.active, .gift-screen.active { display: block; }
+  .lock-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  input {
+    padding: 10px;
+    border: 2px solid #ff8fbf;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+    margin: 10px;
+  }
+  button {
+    background: #ff5c9d;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover { background: #ff3d87; }
+  .gift-box {
+    display: inline-block;
+    margin: 20px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .gift-box:hover { transform: scale(1.05); }
+  h1 { color: #ff3d87; }
+  .letter {
+    background: #fff8dc;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+    font-family: 'Georgia', serif;
+  }
+</style>
+</head>
+<body>
+
+<!-- شاشة الكود السري -->
+<div class="lock-screen active" id="lockScreen">
+  <div class="lock-box">
+    <h1>Enter our secret code 🔐</h1>
+    <input type="password" id="secretCode" placeholder="****">
+    <br>
+    <button onclick="checkCode()">Unlock</button>
+  </div>
+</div>
+
+<!-- شاشة الهدايا -->
+<div class="gift-screen" id="giftScreen">
+  <h1>You unlocked it! 🎁</h1>
+  <div class="gift-box" onclick="showTulips()">🌷 Your Favorite Tulips</div>
+  <div class="gift-box" onclick="showPlaylist()">🎵 Playlist Made For You</div>
+  <div class="gift-box" onclick="showLetter()">💌 A Letter From My Heart</div>
+
+  <div id="content"></div>
+</div>
+
+<script>
+const SECRET_CODE = "1412"; // غيره للكود اللي تحبه - تاريخ عيد ميلادها مثلا
+
+function checkCode() {
+  let code = document.getElementById('secretCode').value;
+  if(code === SECRET_CODE) {
+    document.getElementById('lockScreen').classList.remove('active');
+    document.getElementById('giftScreen').classList.add('active');
+  } else {
+    alert("Wrong code 💔 Try again");
+  }
+}
+
+function showTulips() {
+  document.getElementById('content').innerHTML = `
+    <div class="letter">
+      <h2>Your Favorite Tulips 🌷</h2>
+      <p>You are my sunshine ☀️</p>
+      <p>Always, forever ❤️</p>
+    </div>`;
+}
+
+function showPlaylist() {
+  document.getElementById('content').innerHTML = `
+    <div class="letter">
+      <h2>A Playlist Made For You 🎵</h2>
+      <p>Taylor Swift - Lover</p>
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1dGr1c8CrYooVqbu8RiT5s" width="300" height="80" frameborder="0"></iframe>
+    </div>`;
+}
+
+function showLetter() {
+  document.getElementById('content').innerHTML = `
+    <div class="letter">
+      <h2>A Letter From My Heart 💌</h2>
+      <p>Happy birthday my love. Thank you for being you. 
+      Every moment with you feels like heaven sent. 
+      I couldn't help but love you more each day. 
+      Always, forever.</p>
+    </div>`;
+}
+</script>
+</body>
+</html>
